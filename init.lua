@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -157,7 +157,8 @@ vim.opt.scrolloff = 10
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -532,19 +533,38 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
+        clangd = {},
+        gopls = {},
+        golangci_lint_ls = {},
+        --pyright = {},
+        pylsp = {},
+        mypy = {},
+        rust_analyzer = {},
+        prettier = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
+        terraformls = {},
+        bashls = {},
+        html = {},
+        helm_ls = {},
+        hclfmt = {},
+        jsonls = {},
+        svelte = {}, -- you must npm install typescript-svelte-plugin
+        --[[ you must also add this to tsconfig.json
+         "plugins": [{
+             "name": "typescript-svelte-plugin",
+        // the following options can be set additionally; they are optional; their default values are listed here
+             "enabled": true, // enables this plugin
+             "assumeIsSvelteProject": false // if true, skip detection and always assume it's a Svelte project
+        ]]
         --
-
+        yamlls = {},
+        cssls = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes { ...},
@@ -785,7 +805,38 @@ require('lazy').setup({
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
+        ensure_installed = {
+          'bash',
+          'c',
+          'cpp',
+          'cmake',
+          'css',
+          'dockerfile',
+          'diff',
+          'go',
+          'lua',
+          'hcl',
+          'html',
+          'ini',
+          'javascript',
+          'json',
+          'lua',
+          'luadoc',
+          'make',
+          'markdown',
+          'meson',
+          'nasm',
+          'regex',
+          'svelte',
+          'terraform',
+          'typescript',
+          'tsx',
+          'rust',
+          'toml',
+          'vim',
+          'vimdoc',
+          'yaml',
+        },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },
@@ -818,7 +869,7 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the
