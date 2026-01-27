@@ -1,6 +1,7 @@
 return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main', -- Use main branch for v1.0+ API
     build = ':TSUpdate',
     lazy = false, -- treesitter does not support lazy-loading
     config = function()
