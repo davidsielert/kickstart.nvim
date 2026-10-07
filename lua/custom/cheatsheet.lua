@@ -57,6 +57,7 @@ local cards = {
     items = {
       { 'find files', '<leader>sf' },
       { 'find hidden files', '<leader>sF' },
+      { 'find ignored files too', '<leader>sa' },
       { 'live grep', '<leader>sg' },
       { 'search help', '<leader>sh' },
       { 'search keymaps', '<leader>sk' },
@@ -83,18 +84,54 @@ local cards = {
   {
     title = 'files',
     items = {
+      { 'Oil parent directory', '-' },
+      { 'Oil floating browser', '<leader>o' },
       { 'toggle neo-tree', '<leader>t' },
       { 'plugin manager', ':Lazy' },
       { 'tool installer', ':Mason' },
-      { 'format buffer', 'format on save' },
+      { 'format buffer / selection', '<leader>f' },
+      { 'toggle format on save', '<leader>uf' },
     },
   },
   {
     title = 'markdown',
     items = {
+      { 'toggle markdown rendering', '<leader>mt' },
+      { 'toggle spellcheck', '<leader>ms' },
+      { 'move through wrapped text', 'j / k' },
       { 'enable render markdown', '<leader>me' },
       { 'disable render markdown', ':RenderMarkdown disable' },
       { 'toggle cheatsheet', '<leader>?' },
+    },
+  },
+  {
+    title = 'java',
+    items = {
+      { 'run / debug main class', '<leader>jr / jd' },
+      { 'stop main class / run log', '<leader>jx / jg' },
+      { 'run test / class / all', '<leader>jt / jT / jA' },
+      { 'debug test / test class', '<leader>jn / jN' },
+      { 'last test report', '<leader>jw' },
+      { 'organize imports', '<leader>ji' },
+      { 'extract variable / constant', '<leader>jv / jc' },
+      { 'extract field', '<leader>jf' },
+      { 'extract method (visual)', '<leader>jm' },
+      { 'code actions / generation', '<leader>ja' },
+      { 'symbol outline', '<leader>jo' },
+      { 'compile / reload project', '<leader>jp / js' },
+      { 'change project JDK', '<leader>jS' },
+      { 'Java health check', ':checkhealth custom.java' },
+    },
+  },
+  {
+    title = 'debugger',
+    items = {
+      { 'start / continue', '<F5>' },
+      { 'step over / into / out', '<F10> / <F11> / <F12>' },
+      { 'breakpoint / conditional', '<leader>jb / jB' },
+      { 'toggle debugger panels', '<leader>ju' },
+      { 'evaluate expression', '<leader>je' },
+      { 'stop / repeat last', '<leader>jq / jl' },
     },
   },
   {
@@ -102,16 +139,15 @@ local cards = {
     items = {
       { 'toggle claude', '<leader>ac' },
       { 'focus claude', '<leader>af' },
+      { 'send selection to claude', '<leader>as (visual)' },
     },
   },
   {
-    title = 'debug',
+    title = 'git',
     items = {
-      { 'continue', '<F5>' },
-      { 'step into', '<F1>' },
-      { 'step over', '<F2>' },
-      { 'step out', '<F3>' },
-      { 'toggle breakpoint', '<leader>b' },
+      { 'next / previous change', ']c / [c' },
+      { 'preview change', '<leader>hp' },
+      { 'stage change / selection', '<leader>hs' },
     },
   },
   {

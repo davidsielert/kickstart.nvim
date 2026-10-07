@@ -1,23 +1,54 @@
+local prettier = { 'prettierd', 'prettier', stop_after_first = true }
+
 return {
-  { -- Autoformat
+  {
     'stevearc/conform.nvim',
-    opts = {
-      notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_format = 'fallback',
+    lazy = false,
+    keys = {
+      {
+        '<leader>uf',
+        function()
+          vim.b.disable_autoformat = not vim.b.disable_autoformat
+          vim.notify('Format on save: ' .. (vim.b.disable_autoformat and 'off' or 'on') .. ' for this buffer')
+        end,
+        desc = 'Toggle format on save for buffer',
       },
+      {
+        '<leader>f',
+        function()
+          require('conform').format { async = true }
+        end,
+        mode = { 'n', 'v' },
+        desc = 'Format buffer or selection',
+      },
+    },
+    opts = {
+      notify_on_error = true,
+      default_format_opts = { lsp_format = 'fallback' },
+      format_on_save = function(buf)
+        if not vim.b[buf].disable_autoformat then
+          return { timeout_ms = 1000 }
+        end
+      end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        html = { 'prettierd', 'prettier', stop_after_first = true },
+        java = { lsp_format = 'prefer' },
         python = { 'isort', 'black' },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        html = prettier,
+        javascript = prettier,
+        javascriptreact = prettier,
+        typescript = prettier,
+        typescriptreact = prettier,
+        -- The Svelte server bundles Prettier and its Svelte plugin.
+        svelte = { lsp_format = 'prefer' },
+        css = prettier,
+        scss = prettier,
+        json = prettier,
+        jsonc = prettier,
+        yaml = prettier,
+        markdown = prettier,
+        hcl = { 'hcl' },
       },
     },
   },
 }
--- vim: ts=2 sts=2 sw=2 et

@@ -5,11 +5,14 @@
 return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
+    ft = { 'markdown' },
+    cmd = 'RenderMarkdown',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'echasnovski/mini.nvim',
     },
     keys = {
+      { '<leader>mt', '<cmd>RenderMarkdown toggle<CR>', desc = '[M]arkdown Render [T]oggle' },
       { '<leader>me', '<cmd>RenderMarkdown enable<CR>', desc = '[M]arkdown Render [E]nable' },
     },
     opts = {},

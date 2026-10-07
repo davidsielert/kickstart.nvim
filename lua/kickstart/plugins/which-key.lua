@@ -22,9 +22,13 @@ return {
 
       -- Document existing key chains
       require('which-key').add {
+        { '<leader>a', group = '[A]I', mode = { 'n', 'x' } },
+        { '<leader>h', group = 'Git [H]unks', mode = { 'n', 'x' } },
+        { '<leader>u', group = 'Toggles' },
         { '<leader>c', group = '[C]ode' },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>m', group = '[M]arkdown' },
+        { '<leader>j', group = '[J]ava / debug', mode = { 'n', 'x' } },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
